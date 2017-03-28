@@ -106,7 +106,7 @@ void calculateAlphaBeta(float *w, float *band)
 	alpha1Tmp = (2+sqrt(4-4*a*a))/(2*a);
 	alpha2Tmp = (2-sqrt(4-4*a*a))/(2*a);
 
-	alpha[1] = (alpha1Tmp >= -1 && alpha1Tmp <= 0) ? alpha1Tmp : alpha2Tmp;
+	alpha[1] = (alpha1Tmp >= -1 && alpha1Tmp <= 1) ? alpha1Tmp : alpha2Tmp;
 
 
 	a = cos(band[1]);
@@ -142,17 +142,17 @@ void equalizer(Int16* input, Int16 n, Int16 *k, float *w, float *band, Int16 *ou
 
 	for(i = 0; i < n; i++)
 	{
-		tmp_peek1[i] = shelvingHP(tmp_lp[i], peek1_coeff, z_x_peek1, z_y_peek1, k[1]);
+		tmp_peek1[i] = shelvingPeek(tmp_lp[i], peek1_coeff, z_x_peek1, z_y_peek1, k[1]);
 	}
 
 	for(i = 0; i < n; i++)
 	{
-		tmp_peek2[i] = shelvingHP(tmp_peek1[i], peek2_coeff, z_x_peek2, z_y_peek2, k[2]);
+		tmp_peek2[i] = shelvingPeek(tmp_peek1[i], peek2_coeff, z_x_peek2, z_y_peek2, k[2]);
 	}
 
 	for(i = 0; i < n; i++)
 	{
-		output[i] = shelvingHP(tmp_peek1[i], hp_coeff, z_x_hp, z_y_hp, k[3]);
+		output[i] = shelvingHP(tmp_peek2[i], hp_coeff, z_x_hp, z_y_hp, k[3]);
 	}
 
 }
