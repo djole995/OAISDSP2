@@ -152,7 +152,7 @@ all: EQ.out
 EQ.out: $(OBJS) $(CMD_SRCS) $(LIB_SRCS) $(GEN_CMDS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: C5500 Linker'
-	"/home/milan/ti/ccsv6/tools/compiler/c5500_4.4.1/bin/cl55" -v5515 --memory_model=large -g --define=c5535 --diag_warning=225 --ptrdiff_size=16 -z -m"EQ.map" --stack_size=0x200 --heap_size=0x400 -i"/home/milan/ti/ccsv6/tools/compiler/c5500_4.4.1/lib" -i"/home/milan/ti/ccsv6/tools/compiler/c5500_4.4.1/include" -i"/media/milan/A6A2677BA2674EBD/OAISDSP2/Zadatak1/EQ/c55xx_csl/lib" -i"/media/milan/A6A2677BA2674EBD/OAISDSP2/Zadatak1/EQ/lib" --reread_libs --warn_sections --xml_link_info="vezba-ezdsp_linkInfo.xml" --rom_model --sys_stacksize=0x200 -o "EQ.out" $(ORDERED_OBJS)
+	"/home/milan/ti/ccsv6/tools/compiler/c5500_4.4.1/bin/cl55" -v5515 --memory_model=large -g --define=c5535 --diag_warning=225 --ptrdiff_size=16 -z -m"EQ.map" --stack_size=0x200 --heap_size=0x400 -i"/home/milan/ti/ccsv6/tools/compiler/c5500_4.4.1/lib" -i"/home/milan/ti/ccsv6/tools/compiler/c5500_4.4.1/include" -i"/media/milan/A6A2677BA2674EBD/Projekti/OAISDSP2/Zadatak1/EQ/c55xx_csl/lib" -i"/media/milan/A6A2677BA2674EBD/Projekti/OAISDSP2/Zadatak1/EQ/lib" --reread_libs --warn_sections --xml_link_info="vezba-ezdsp_linkInfo.xml" --rom_model --sys_stacksize=0x200 -o "EQ.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -17,7 +17,7 @@ void calculateShelvingCoeff(float alpha, Int16* output);
 
 void calculatePeekCoeff(float alpha, float beta, Int16* output);
 
-Int16 shelvingHP(Int16 input, Int16* coef, Int16* z_x, Int16* z_y, Int16 k);
+Int16 shelvingHP(Int16 input, Int16* coeff, Int16* z_x, Int16* z_y, Int16 k);
 
 
 Int16 shelvingLP(Int16 input, Int16* coeff, Int16* z_x, Int16* z_y, Int16 k);
