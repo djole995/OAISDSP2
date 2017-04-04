@@ -75,8 +75,8 @@ void main( void )
     testInput[0] = 10000;
     memset(testInput+1, 0x0, AUDIO_IO_SIZE-1);
 
-    printChar(activeSubrange);
-    printChar(kValuesIndex);
+    printChar(activeSubrange + '0');
+    printChar(kValuesIndex + '0');
 
     while(1)
     {
