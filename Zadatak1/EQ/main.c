@@ -34,11 +34,13 @@ Int16 sampleBufferL[AUDIO_IO_SIZE];
 #pragma DATA_ALIGN(sampleBufferR,4)
 Int16 sampleBufferR[AUDIO_IO_SIZE];
 Int16 tempBuff[128];
-float w[4] = {0.2, 0.25, 0.3, 0.4};
-Int16 kValues[5] = {4096, 8192, 16384, 32767, 4};
+Int16 tempBuff1[128];
+Int16 tempBuff2[128];
+float w[4] = {0.059, 0.177, 0.785, 1.429};
+Int16 kValues[4] = {4096, 8192, 16384, 32767};
 Uint8 kValuesIndex = 0;
 Int16 k[4] = {4096, 4096, 4096, 4096};
-float band[2] = {0.2, 0.2};
+float band[2] = {0.118, 0.393};
 Int16 testInput[AUDIO_IO_SIZE];
 Int16 coeff[6];
 Int16 z_x[2];
@@ -88,12 +90,17 @@ void main( void )
     		if(button == SW1)
     		{
     			activeSubrange = (activeSubrange == 3) ? 0 : activeSubrange+1;
+    			clearLCD();
+    			kValuesIndex = 0;
     			printChar(activeSubrange+'0');
+    			printChar(kValuesIndex+'0');
     		}
     		else if(button == SW2)
     		{
-    			kValuesIndex = (kValuesIndex == 4) ? 0 : kValuesIndex+1;
+    			kValuesIndex = (kValuesIndex == 3) ? 0 : kValuesIndex+1;
     			k[activeSubrange] = kValues[kValuesIndex];
+    			clearLCD();
+    			printChar(activeSubrange+'0');
     			printChar(kValuesIndex+'0');
     		}
     	}
@@ -109,8 +116,11 @@ void main( void )
     	}*/
 
     	equalizer(testInput, AUDIO_IO_SIZE, k, w, band, tempBuff);
+    	equalizer(sampleBufferL, AUDIO_IO_SIZE, k, w, band, tempBuff1);
+    	equalizer(sampleBufferR, AUDIO_IO_SIZE, k, w, band, tempBuff2);
 
-		aic3204_write_block(sampleBufferR, sampleBufferR);
+		aic3204_write_block(tempBuff1, tempBuff1);
+		//aic3204_write_block(sampleBufferL, sampleBufferL);
 	}
 
     	

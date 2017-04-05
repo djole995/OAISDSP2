@@ -29,7 +29,6 @@ OBJ_SRCS :=
 S62_SRCS := 
 LIB_SRCS := 
 PDE_SRCS := 
-SV7A_SRCS := 
 ASM_SRCS := 
 ASM_UPPER_SRCS := 
 C++_SRCS := 
@@ -52,7 +51,6 @@ S62_DEPS :=
 C64_DEPS := 
 ASM_DEPS := 
 CC_DEPS := 
-SV7A_DEPS := 
 S55_DEPS := 
 C67_DEPS := 
 CLA_DEPS := 
@@ -106,12 +104,11 @@ PDE_DEPS__QUOTED :=
 C43_DEPS__QUOTED := 
 S62_DEPS__QUOTED := 
 ASM_DEPS__QUOTED := 
-SV7A_DEPS__QUOTED := 
 S64_DEPS__QUOTED := 
 
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 . \
-c55xx_csl/lib \
 lib \
+c55xx_csl/lib \
 

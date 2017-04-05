@@ -204,13 +204,13 @@ void equalizer(Int16* input, Int16 n, Int16 *k, float *w, float *band, Int16 *ou
 {
 	int i;
 
-	/*calculateAlphaBeta(w, band);*/
-	alpha[0] = 0.3;
+	calculateAlphaBeta(w, band);
+	/*alpha[0] = 0.3;
 	alpha[1] = 0.7;
 	alpha[2] = 0.9;
 	alpha[3] = -0.3;
 	beta[0] = 0;
-	beta[1] = 0;
+	beta[1] = 0;*/
 
 
 	calculateShelvingCoeff(alpha[0], lp_coeff);
@@ -221,10 +221,10 @@ void equalizer(Int16* input, Int16 n, Int16 *k, float *w, float *band, Int16 *ou
 
 	for(i = 0; i < n; i++)
 	{
-		/*tmp_lp*/output[i] = shelvingLP(input[i], lp_coeff, z_x_lp, z_y_lp, k[0]);
+		tmp_lp[i] = shelvingLP(input[i], lp_coeff, z_x_lp, z_y_lp, k[0]);
 	}
 
-	/*for(i = 0; i < n; i++)
+	for(i = 0; i < n; i++)
 	{
 		tmp_peek1[i] = shelvingPeek(tmp_lp[i], peek1_coeff, z_x_peek1, z_y_peek1, k[1]);
 	}
@@ -232,11 +232,11 @@ void equalizer(Int16* input, Int16 n, Int16 *k, float *w, float *band, Int16 *ou
 	for(i = 0; i < n; i++)
 	{
 		tmp_peek2[i] = shelvingPeek(tmp_peek1[i], peek2_coeff, z_x_peek2, z_y_peek2, k[2]);
-	}*/
+	}
 
-	/*for(i = 0; i < n; i++)
+	for(i = 0; i < n; i++)
 	{
-		output[i] = shelvingHP(/*tmp_peek2[i] tmp_lp[i], hp_coeff, z_x_hp, z_y_hp, k[3]);
-	}*/
+		output[i] = shelvingHP(tmp_peek2[i] /*tmp_lp[i]*/, hp_coeff, z_x_hp, z_y_hp, k[3]);
+	}
 
 }
